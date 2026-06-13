@@ -1,6 +1,5 @@
 from modules.meta_normalizer import normalize_meta
 
-
 def test_normalize_meta():
     data = {
         "reach": 1000,
