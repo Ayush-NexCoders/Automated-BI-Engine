@@ -5,6 +5,10 @@ from modules.zoho_normalizer import (
     calculate_revenue_by_segment
 )
 
+
+from modules.kpi_aggregator import aggregate_kpis
+
+
 sample_meta = {
     "reach": 8000,
     "impressions": 12000,
@@ -47,3 +51,22 @@ print(normalize_invoice(sample_invoices[0]))
 
 print("\nRevenue By Segment:")
 print(calculate_revenue_by_segment(sample_invoices))
+
+previous_week = {
+    "reach": 10000,
+    "impressions": 15000,
+    "engagements": 1000
+}
+
+current_week = {
+    "reach": 12000,
+    "impressions": 18000,
+    "engagements": 900
+}
+
+result = aggregate_kpis(
+    current_week,
+    previous_week
+)
+
+print(result)
