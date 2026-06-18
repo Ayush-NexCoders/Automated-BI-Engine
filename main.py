@@ -9,6 +9,10 @@ from modules.zoho_normalizer import (
 from modules.kpi_aggregator import aggregate_kpis
 
 
+from modules.pipeline_scoring import rank_deals
+
+from modules.schema_validator import validate_invoice
+
 sample_meta = {
     "reach": 8000,
     "impressions": 12000,
@@ -70,3 +74,37 @@ result = aggregate_kpis(
 )
 
 print(result)
+
+
+deals = [
+
+    {
+        "name": "ABC University",
+        "segment": "University",
+        "value": 50000,
+        "age_days": 10,
+        "engagement_score": 70,
+        "payment_status": "Partial"
+    },
+
+    {
+        "name": "Tech Corp",
+        "segment": "Corporate",
+        "value": 150000,
+        "age_days": 5,
+        "engagement_score": 90,
+        "payment_status": "Paid"
+    }
+]
+
+print(rank_deals(deals))
+
+invoice = {
+    "invoice_id": "INV001",
+    "organization_name": "ABC University",
+    "segment": "University",
+    "amount": 10000,
+    "date": "2026-06-20"
+}
+
+print(validate_invoice(invoice))
