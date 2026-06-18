@@ -1,0 +1,196 @@
+{
+  "name": "Master Orchestration Workflow (Days 5-7)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [1],
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "e1f13b65-4f32-4114-8742-fb7004f14187",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 400]
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v19.0/{{$env[\"META_PAGE_ID\"]}}/insights",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {"name": "metric", "value": "page_post_engagements,page_impressions"},
+            {"name": "period", "value": "day"},
+            {"name": "date_preset", "value": "last_7d"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "8c459f2a-89a1-42e1-855a-493a7c645367",
+      "name": "Meta API Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 100],
+      "credentials": {"httpQueryAuth": {"id": "meta_auth", "name": "Meta Access Token"}},
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "url": "https://api.linkedin.com/rest/organizationalEntityShareStatistics",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {"name": "q", "value": "organizationalEntity"},
+            {"name": "organizationalEntity", "value": "urn:li:organization:{{$env[\"LINKEDIN_ORG_ID\"]}}"}
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{"name": "LinkedIn-Version", "value": "202312"}]
+        },
+        "options": {}
+      },
+      "id": "f2a281c3-c2a4-4f4e-a103-68d30e014902",
+      "name": "LinkedIn API Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300],
+      "credentials": {"httpHeaderAuth": {"id": "linkedin_auth", "name": "LinkedIn Access Token"}},
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "url": "https://www.zohoapis.{{$env[\"ZOHO_DC\"]}}/books/v3/invoices",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {"name": "organization_id", "value": "{{$env[\"ZOHO_ORG_ID\"]}}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "zoho-books-node-id",
+      "name": "Zoho Books Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 500],
+      "credentials": {"oAuth2Api": {"id": "zoho_oauth", "name": "Zoho OAuth2 API"}},
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "url": "https://www.zohoapis.{{$env[\"ZOHO_DC\"]}}/inventory/v1/salesorders",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {"name": "organization_id", "value": "{{$env[\"ZOHO_ORG_ID\"]}}"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "zoho-inventory-node-id",
+      "name": "Zoho Inventory Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 700],
+      "credentials": {"oAuth2Api": {"id": "zoho_oauth", "name": "Zoho OAuth2 API"}},
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "mergeByPosition",
+        "options": {}
+      },
+      "id": "5c149d63-5461-410e-a612-421712a14bc1",
+      "name": "Merge All Data",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [760, 400]
+    },
+    {
+      "parameters": {},
+      "id": "error-trigger-node-id",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [200, 900]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"🚨 Pipeline Error Alert! 🚨\\n\\nWorkflow: {{$execution.workflow.name}}\\nNode: {{$json.execution.lastNodeExecuted}}\\nError: {{$json.execution.error.message}}\"\n}",
+        "options": {}
+      },
+      "id": "slack-alert-node-id",
+      "name": "Slack Error Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 900]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {"node": "Meta API Request", "type": "main", "index": 0},
+          {"node": "LinkedIn API Request", "type": "main", "index": 0},
+          {"node": "Zoho Books Request", "type": "main", "index": 0},
+          {"node": "Zoho Inventory Request", "type": "main", "index": 0}
+        ]
+      ]
+    },
+    "Meta API Request": {
+      "main": [[{"node": "Merge All Data", "type": "main", "index": 0}]]
+    },
+    "LinkedIn API Request": {
+      "main": [[{"node": "Merge All Data", "type": "main", "index": 1}]]
+    },
+    "Zoho Books Request": {
+      "main": [[{"node": "Merge All Data", "type": "main", "index": 0}]]
+    },
+    "Zoho Inventory Request": {
+      "main": [[{"node": "Merge All Data", "type": "main", "index": 0}]]
+    },
+    "Error Trigger": {
+      "main": [[{"node": "Slack Error Alert", "type": "main", "index": 0}]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "errorWorkflow": "this"
+  },
+  "versionId": "f96f1233-010e-4735-9cd8-7c8a6f3b0606",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "zYxWvU12346",
+  "tags": []
+}

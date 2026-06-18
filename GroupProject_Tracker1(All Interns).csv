@@ -1,0 +1,51 @@
+Day,Phase,Intern,Subpart,Task Description,Est. Time (hrs),Actual Time Taken,Status,% Complete,Challenges Faced,How I Solved It,What I Learned,Notes / References
+"Day 1
+Mon Jun 16",Foundation Setup,Akshat,n8n Setup,Set up Ubuntu VPS & Docker; install n8n via Docker Compose; verify instance accessible on port 5678,4,,Completed,,,,,
+,,Ayush,Python Scaffold,"Scaffold Python 3.11 project repo; set up virtual environment; install pandas, requests, jsonschema",4,,Completed,,,,,
+,,Aparna,Groq API,Obtain Groq API key; run test Llama 3.3 70B inference call via REST; benchmark response latency,4,,Not Started,,,,,
+,,Harshit,Gmail API Setup,Create Google Cloud project; enable Gmail API; configure OAuth 2.0 service account; test send call,4,,Not Started,,,,,
+"Day 2
+Tue Jun 17",,Akshat,Meta API,Register Meta Graph API app; obtain long-lived page access token; test /insights endpoint in Postman,4,,Completed,,,,,
+,,Ayush,Meta Normalisation,"Build Meta data normalisation function: parse reach, impressions, engagement_rate, follower_delta",4,,Completed,,,,,
+,,Aparna,Prompt Architecture,Draft prompt architecture: system prompt persona + data context + structured output schema in JSON,4,,Not Started,,,,,
+,,Harshit,HTML Template,"Build HTML email skeleton with Indiefy branding: header, footer, color palette, typography",4,,Not Started,,,,,
+"Day 3
+Wed Jun 18",Data Ingestion,Akshat,Zoho OAuth,Configure Zoho Books & Zoho Inventory OAuth 2.0; verify read-only /invoices and /salesorders endpoints,4,,Not Started,,,,,
+,,Ayush,Zoho Books Normalisation,"Build Zoho Books normalisation: parse invoice data, compute revenue_by_segment (Corp/Uni/School)",4,,Not Started,,,,,
+,,Aparna,Narrative Prompt,Build Groq performance narrative prompt v1: input = KPI JSON -> output = Wins/Drop-offs/Anomalies,4,,Not Started,,,,,
+,,Harshit,KPI Cards,"Build HTML KPI card components: metric value display, WoW delta badge (green up / red down), label",4,,Not Started,,,,,
+"Day 4
+Thu Jun 19",,Akshat,n8n Ingestion Nodes,Build n8n HTTP Request nodes for Meta & LinkedIn; pull last-7-day metrics; store raw JSON,4,,Not Started,,,,,
+,,Ayush,KPI Aggregation,Build KPI aggregation module: compute week-over-week (WoW) deltas for all core metrics,4,,Not Started,,,,,
+,,Aparna,Recommendations Prompt,Build recommendations prompt: input = trends + pipeline scores -> output = 3-5 prioritised actions,4,,Not Started,,,,,
+,,Harshit,Narrative/Reco Sections,Build HTML narrative block (Wins/Drop-offs/Anomalies) and recommendations numbered list section,4,,Not Started,,,,,
+"Day 5
+Fri Jun 20",KPI Processing,Akshat,Zoho Ingestion Nodes,Build n8n Zoho Books & Inventory nodes; test all 4 ingestion nodes end-to-end; package raw JSON,4,,Not Started,,,,,
+,,Ayush,Pipeline Scoring,"Implement pipeline scoring logic: score deals 0-100 using 5 dimensions (segment, value, age, engagement, payment)",4,,Not Started,,,,,
+,,Aparna,Groq Integration Func,Build Python function: POST KPI payload to Groq API; parse JSON response; extract narrative + recommendations,4,,Not Started,,,,,
+,,Harshit,Top-3 Deal Cards,"Build Top-3 pipeline deal cards with score badge, deal value, institution tag, and action button",4,,Not Started,,,,,
+"Day 6
+Mon Jun 23",,Akshat,n8n Orchestration,Wire all 4 n8n data nodes into single orchestration workflow; add deduplication + error routing nodes,4,,Not Started,,,,,
+,,Ayush,Schema Validation,Add schema validation layer: catch missing/null fields; route unclassified records gracefully,4,,Not Started,,,,,
+,,Aparna,Groq n8n Integration,Integrate Groq function as n8n Python node; verify data-in -> AI-out flow with real KPI payload,4,,Not Started,,,,,
+,,Harshit,Jinja2 Injection,Build Python/Jinja2 injection function: map live KPI + narrative + recommendations into HTML template,4,,Not Started,,,,,
+"Day 7
+Tue Jun 24",AI Integration,Akshat,Retry & Alerts,Implement n8n retry logic (3x exponential backoff); configure Slack/Telegram failure alert webhook,4,,Not Started,,,,,
+,,Ayush,n8n Script Integration,Integrate Python scripts into n8n as Execute Script node; confirm data flows end-to-end,4,,Not Started,,,,,
+,,Aparna,Scoring Prompt Tuning,Tune pipeline scoring prompt: validate Top-3 deals output against Zoho Books live sample records,4,,Not Started,,,,,
+,,Harshit,Gmail Send Config,"Configure Gmail API send: OAuth auth, subject line, TO/CC recipients, HTML body injection",4,,Not Started,,,,,
+"Day 8
+Wed Jun 25",,Akshat,Cron & Dry Run,Set Sunday 11 PM cron; run full Monday-simulation dry run; fix timing or sequencing issues,4,,Not Started,,,,,
+,,Ayush,Edge Case Testing,"Unit test edge cases: zero impressions week, no invoices, first-time customers, all-null inventory",4,,Not Started,,,,,
+,,Aparna,End-to-End AI Test,Run end-to-end AI test: real KPI -> Groq -> structured JSON output -> fed into HTML template,4,,Not Started,,,,,
+,,Harshit,Full Pipeline Simulation,Run full Monday-simulation: Sunday cron -> data pull -> KPI -> AI -> HTML -> Gmail send by 6 AM,4,,Not Started,,,,,
+"Day 9
+Thu Jun 26",UAT & Testing,Akshat,Live Pipeline Re-run,Re-run live pipeline on real Zoho & social data; verify all 4 sources populate correctly in test report,4,,Not Started,,,,,
+,,Ayush,Data Validation UAT,UAT data validation: compare Python output vs manual Zoho Books spot-check on 5 live records,4,,Not Started,,,,,
+,,Aparna,AI Quality UAT,UAT AI quality review: founders rate narrative usefulness; iterate prompts based on feedback,4,,Not Started,,,,,
+,,Harshit,Email Review UAT,UAT email review: founders open test email; check rendering in Gmail/Outlook/mobile; fix issues,4,,Not Started,,,,,
+"Day 10
+Fri Jun 27",Handover,Akshat,Cron Confirm & SOP,Confirm Monday 6 AM cron is live; export n8n workflow JSON; write API token rotation SOP,4,,Not Started,,,,,
+,,Ayush,Docs & README,Write docstrings for all functions; produce README for Python processing module,4,,Not Started,,,,,
+,,Aparna,Prompt Library Lock,Lock final prompt library; document Groq config; write prompt update process for startup team,4,,Not Started,,,,,
+,,Harshit,Template & OAuth Lock,Lock HTML template v1.0 and Gmail OAuth config; confirm cron schedule; write component guide,4,,Not Started,,,,,
