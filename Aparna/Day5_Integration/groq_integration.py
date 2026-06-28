@@ -11,42 +11,36 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 # ============================================
 # SAMPLE KPI PAYLOAD (like what Ayush will send)
 # ============================================
-sample_kpi_payload = {
-    "week": "June 16-20, 2025",
-    "total_deals": 12,
-    "total_value": 450000,
-    "avg_score": 73.5,
-    "top_segments": ["Universities", "Corporates"],
-    "deals": [
-        {
-            "institution": "Delhi University",
-            "segment": "University",
-            "value": 85000,
-            "score": 91,
-            "age_days": 5,
-            "engagement": "high",
-            "payment": "advance"
-        },
-        {
-            "institution": "TechCorp Ltd",
-            "segment": "Corporate",
-            "value": 120000,
-            "score": 85,
-            "age_days": 3,
-            "engagement": "high",
-            "payment": "partial"
-        },
-        {
-            "institution": "Sunshine School",
-            "segment": "School",
-            "value": 45000,
-            "score": 62,
-            "age_days": 12,
-            "engagement": "medium",
-            "payment": "pending"
-        }
-    ]
-}
+import sys
+sys.path.append("C:\\Users\\ASUS\\Automated-BI-Engine")
+
+try:
+    import pandas as pd
+    zoho_df = pd.read_csv(
+        "C:\\Users\\ASUS\\Automated-BI-Engine\\Harshit\\data\\zoho_data.csv"
+    )
+    sample_kpi_payload = {
+        "week": "June 16-20, 2025",
+        "total_deals": len(zoho_df),
+        "total_value": int(zoho_df['value'].sum()),
+        "avg_score": round(zoho_df['value'].mean(), 1),
+        "top_segments": list(zoho_df['segment'].dropna().unique()),
+        "deals": zoho_df.rename(columns={
+            "customer": "institution"
+        }).to_dict(orient='records')
+    }
+    print(f"Real data loaded! {len(zoho_df)} deals found.")
+
+except Exception as e:
+    print(f"Could not load real data: {e}")
+    sample_kpi_payload = {
+        "week": "June 16-20, 2025",
+        "total_deals": 12,
+        "total_value": 450000,
+        "avg_score": 73.5,
+        "top_segments": ["Universities", "Corporates"],
+        "deals": []
+    }
 
 # ============================================
 # MAIN FUNCTION - this is what Day 5 is about

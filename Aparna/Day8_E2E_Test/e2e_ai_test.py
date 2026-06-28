@@ -13,67 +13,45 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 # STEP 1: REAL KPI PAYLOAD
 # This simulates what comes from Zoho/pipeline
 # ============================================
-real_kpi_payload = {
-    "week": "June 23-27, 2025",
-    "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
-    "total_deals": 15,
-    "total_value": 620000,
-    "avg_score": 78.2,
-    "top_segments": ["Universities", "Corporates", "Schools"],
-    "deals": [
-        {
-            "deal_id": "ZB001",
-            "institution": "IIT Delhi",
-            "segment": "University",
-            "value": 150000,
-            "score": 95,
-            "payment_status": "paid",
-            "last_contact_days": 2,
-            "engagement": "high"
-        },
-        {
-            "deal_id": "ZB002",
-            "institution": "Infosys Ltd",
-            "segment": "Corporate",
-            "value": 200000,
-            "score": 88,
-            "payment_status": "partial",
-            "last_contact_days": 4,
-            "engagement": "high"
-        },
-        {
-            "deal_id": "ZB003",
-            "institution": "DPS School",
-            "segment": "School",
-            "value": 55000,
-            "score": 65,
-            "payment_status": "pending",
-            "last_contact_days": 8,
-            "engagement": "medium"
-        },
-        {
-            "deal_id": "ZB004",
-            "institution": "Delhi University",
-            "segment": "University",
-            "value": 95000,
-            "score": 92,
-            "payment_status": "paid",
-            "last_contact_days": 1,
-            "engagement": "high"
-        },
-        {
-            "deal_id": "ZB005",
-            "institution": "TCS Mumbai",
-            "segment": "Corporate",
-            "value": 175000,
-            "score": 85,
-            "payment_status": "partial",
-            "last_contact_days": 3,
-            "engagement": "high"
-        }
-    ]
-}
+try:
+    import pandas as pd
+    import sys
+    sys.path.append("C:\\Users\\ASUS\\Automated-BI-Engine")
 
+    zoho_df = pd.read_csv(
+        "C:\\Users\\ASUS\\Automated-BI-Engine\\Harshit\\data\\zoho_data.csv"
+    )
+    meta_df = pd.read_csv(
+        "C:\\Users\\ASUS\\Automated-BI-Engine\\Harshit\\data\\meta_data.csv"
+    )
+
+    real_kpi_payload = {
+        "week": "June 23-27, 2025",
+        "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "total_deals": len(zoho_df),
+        "total_value": int(zoho_df['value'].sum()),
+        "avg_score": round(zoho_df['value'].mean(), 1),
+        "top_segments": list(zoho_df['segment'].dropna().unique()),
+        "total_impressions": int(meta_df['impressions'].sum()),
+        "total_reach": int(meta_df['reach'].sum()),
+        "total_engagement": int(meta_df['engagement'].sum()),
+        "deals": zoho_df.rename(columns={
+            "customer": "institution"
+        }).to_dict(orient='records')
+    }
+    print(f"Real data loaded! Deals: {len(zoho_df)}, Value: {real_kpi_payload['total_value']}")
+
+except Exception as e:
+    print(f"Could not load real data: {e}")
+    real_kpi_payload = {
+        "week": "June 23-27, 2025",
+        "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "total_deals": 15,
+        "total_value": 620000,
+        "avg_score": 78.2,
+        "top_segments": ["Universities", "Corporates", "Schools"],
+        "deals": []
+    }
 
 # ============================================
 # STEP 2: SEND TO GROQ
