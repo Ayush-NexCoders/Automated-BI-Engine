@@ -1,0 +1,27 @@
+{
+  "top_3_deals": [
+    {
+      "rank": 1,
+      "deal_id": "ZB001",
+      "institution": "IIT Delhi",
+      "total_score": 155,
+      "reason": "This deal has the highest total score due to its paid payment status, high engagement score, and recent last contact."
+    },
+    {
+      "rank": 2,
+      "deal_id": "ZB004",
+      "institution": "Delhi University",
+      "total_score": 152,
+      "reason": "This deal is a close second with a high total score resulting from its paid payment status, high engagement score, and very recent last contact."
+    },
+    {
+      "rank": 3,
+      "deal_id": "ZB002",
+      "institution": "Infosys Ltd",
+      "total_score": 138,
+      "reason": "This deal ranks third due to its partial payment status, moderate engagement score, and follow-up due bonus, making it a priority for further negotiation."
+    }
+  ],
+  "prompt_version": "v1",
+  "validation_notes": "The overall pipeline health appears to be strong, with multiple deals showing high engagement scores and recent contact."
+}
