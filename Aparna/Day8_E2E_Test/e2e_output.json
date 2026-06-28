@@ -1,9 +1,9 @@
 {
-  "narrative": "This week's performance was strong, with a total value of 620,000 and 15 deals closed, primarily within the Universities, Corporates, and Schools segments. The average score of 78.2 indicates a high level of engagement and satisfaction among clients. However, some deals, such as ZB003, require follow-up due to pending payments. Overall, the sales team has performed well, with several high-value deals secured.",
+  "narrative": "This week's performance has been robust, with a total value of 620,000 and 15 deals closed. The top-performing segments were Universities, Corporates, and Schools, with IIT Delhi and Infosys Ltd being notable institutions. The average score of 78.2 indicates a strong overall performance, but there is room for improvement in deals with pending payment status.",
   "recommendations": [
-    "Follow up with DPS School to resolve the pending payment for deal ZB003",
-    "Prioritize high-scoring deals, such as ZB001 and ZB004, for future sales opportunities",
-    "Analyze the sales strategy for the Schools segment to improve engagement and payment status"
+    "Follow up with DPS School to resolve the pending payment status",
+    "Prioritize high-engagement deals like IIT Delhi and Infosys Ltd for future business",
+    "Analyze the causes of partial payment status in deals like Infosys Ltd and TCS Mumbai"
   ],
   "top_3_deals": [
     {
@@ -12,7 +12,7 @@
       "segment": "Corporate",
       "value": 200000,
       "score": 88,
-      "action": "Schedule a meeting to discuss partial payment and potential upselling opportunities"
+      "action": "Follow up on partial payment"
     },
     {
       "rank": 2,
@@ -20,7 +20,7 @@
       "segment": "University",
       "value": 150000,
       "score": 95,
-      "action": "Explore additional sales opportunities within the University segment, building on the success of deal ZB001"
+      "action": "Explore opportunities for repeat business"
     },
     {
       "rank": 3,
@@ -28,7 +28,7 @@
       "segment": "Corporate",
       "value": 175000,
       "score": 85,
-      "action": "Follow up on partial payment and discuss potential expansion of services to other TCS locations"
+      "action": "Address partial payment and nurture the relationship"
     }
   ],
   "week": "June 23-27, 2025",
