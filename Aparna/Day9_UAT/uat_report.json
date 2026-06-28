@@ -1,0 +1,79 @@
+{
+  "uat_date": "2026-06-28 19:04",
+  "v1_output": {
+    "narrative": "This week, the company performed well with a total value of 620000 and 15 deals closed, with an average score of 78.2. The top-performing segments were Universities, Corporates, and Schools. The highest-scoring deals were from IIT Delhi and Delhi University, both from the University segment. To further improve, the company should focus on follow-ups with pending payments and high engagement deals.",
+    "recommendations": [
+      "Follow up with pending payments from DPS School and TCS Mumbai",
+      "Increase engagement with high-scoring deals like IIT Delhi and Delhi University",
+      "Explore more opportunities in the University segment"
+    ],
+    "top_3_deals": [
+      {
+        "rank": 1,
+        "institution": "IIT Delhi",
+        "segment": "University",
+        "value": 150000,
+        "score": 95,
+        "action": "Explore more opportunities with IIT Delhi"
+      },
+      {
+        "rank": 2,
+        "institution": "Infosys Ltd",
+        "segment": "Corporate",
+        "value": 200000,
+        "score": 88,
+        "action": "Follow up on partial payment"
+      },
+      {
+        "rank": 3,
+        "institution": "Delhi University",
+        "segment": "University",
+        "value": 95000,
+        "score": 92,
+        "action": "Maintain high engagement with Delhi University"
+      }
+    ],
+    "week": "June 23-27, 2025",
+    "total_value": 620000,
+    "total_deals": 15
+  },
+  "v2_output": {
+    "narrative": "We closed 15 deals worth 620,000 this week, with Universities being the top-performing segment, accounting for 40% of the total value, driven by high-scoring deals like IIT Delhi and Delhi University. The average score of our deals was 78.2, indicating a good level of engagement and quality. However, one urgent problem that needs attention today is the pending payment for DPS School, which is 8 days overdue and requires immediate follow-up to prevent revenue loss.",
+    "recommendations": [
+      "Action 1: Call the decision-maker at DPS School TODAY to resolve the pending payment issue",
+      "Action 2: Reach out to 5 new Corporate clients THIS WEEK to improve the pipeline and increase the average deal value",
+      "Action 3: Monitor the engagement levels of all deals and fix any issues that could lead to a drop in scores and revenue loss"
+    ],
+    "top_3_deals": [
+      {
+        "rank": 1,
+        "institution": "Infosys Ltd",
+        "segment": "Corporate",
+        "value": 200000,
+        "score": 88,
+        "action": "Schedule a meeting with the training team at Infosys Ltd within the next 24 hours to discuss the next phase of training"
+      },
+      {
+        "rank": 2,
+        "institution": "IIT Delhi",
+        "segment": "University",
+        "value": 150000,
+        "score": 95,
+        "action": "Send a thank-you note and a survey to IIT Delhi within the next 24 hours to ensure high engagement and potential referrals"
+      },
+      {
+        "rank": 3,
+        "institution": "TCS Mumbai",
+        "segment": "Corporate",
+        "value": 175000,
+        "score": 85,
+        "action": "Follow up with TCS Mumbai within the next 24 hours to confirm the training schedule and ensure timely payment"
+      }
+    ],
+    "week": "June 23-27, 2025",
+    "total_value": 620000,
+    "total_deals": 15
+  },
+  "feedback": "V1 was too vague. V2 improved with specific actions and founder-friendly language.",
+  "final_prompt_version": "V2"
+}
