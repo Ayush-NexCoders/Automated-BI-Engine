@@ -1,0 +1,37 @@
+{
+  "narrative": "This week's performance was strong, with a total value of 620,000 and 15 deals closed, primarily within the Universities, Corporates, and Schools segments. The average score of 78.2 indicates a high level of engagement and satisfaction among clients. However, some deals, such as ZB003, require follow-up due to pending payments. Overall, the sales team has performed well, with several high-value deals secured.",
+  "recommendations": [
+    "Follow up with DPS School to resolve the pending payment for deal ZB003",
+    "Prioritize high-scoring deals, such as ZB001 and ZB004, for future sales opportunities",
+    "Analyze the sales strategy for the Schools segment to improve engagement and payment status"
+  ],
+  "top_3_deals": [
+    {
+      "rank": 1,
+      "institution": "Infosys Ltd",
+      "segment": "Corporate",
+      "value": 200000,
+      "score": 88,
+      "action": "Schedule a meeting to discuss partial payment and potential upselling opportunities"
+    },
+    {
+      "rank": 2,
+      "institution": "IIT Delhi",
+      "segment": "University",
+      "value": 150000,
+      "score": 95,
+      "action": "Explore additional sales opportunities within the University segment, building on the success of deal ZB001"
+    },
+    {
+      "rank": 3,
+      "institution": "TCS Mumbai",
+      "segment": "Corporate",
+      "value": 175000,
+      "score": 85,
+      "action": "Follow up on partial payment and discuss potential expansion of services to other TCS locations"
+    }
+  ],
+  "week": "June 23-27, 2025",
+  "total_value": 620000,
+  "total_deals": 15
+}
